@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- https://flask.palletsprojects.com/en/stable/tutorial/static/ -->
+</head>
+<body>
+    <h2>Digite a tarefa e data de conclusão:</h2>
+    <input id="tarefa" type="text"></input>
+    <input id="data" type="date"></input>
+    <button onclick="adicionarTarefa()">Adicionar tarefa</button>
+    <p id="exibir"></p>
+    <div id="lista-de-tarefas"></div>
+
+    <script> // MVC -> Modelagem, visualização, controle
+        
+        // Seção de Modelagem (de dados)
+        let afazeres;
+        const afazeresSalvos = JSON.parse(localStorage.getItem('afazeres'));
+        if(Array.isArray(afazeresSalvos))
+        {
+            afazeres = afazeresSalvos;
+        }else{
+            afazeres = [ // coleção de objetos
+                // {
+                //     nome: "",
+                //     id: ""
+                // }
+            ];
+        }
+
+        function salvarTarefas() { // salva as tarefas no navegador
+            localStorage.setItem('afazeres', JSON.stringify(afazeres)); // transforma código em string
+        }
+
+        // Seção de Visualização
+        function renderizar() {
+            
+            document.getElementById('lista-de-tarefas').innerHTML = "";
+            
+            afazeres.forEach(function(tarefa){ // função anônima
+                const elemento = document.createElement('div');
+                elemento.innerHTML = tarefa.nome + ' - ' + tarefa.dataConclusao;
+                
+                const botao = document.createElement("button");
+                botao.innerText = "Apagar";
+                botao.style = "margin-left: 12px;";
+                botao.onclick = removerTarefa; // atribui a função a 'onclick' -> sem ()
+                botao.id = tarefa.id;
+                elemento.appendChild(botao);
+                
+                const listaDeTarefas = document.getElementById("lista-de-tarefas");
+                listaDeTarefas.appendChild(elemento);
+            })           
+        }
+
+        // Seção de Controle 
+        function adicionarTarefa() {
+            const caixaDeTexto = document.getElementById("tarefa");
+            const caixaData = document.getElementById("data");
+            const tarefa = caixaDeTexto.value;
+            const data = caixaData.value;
+            afazeres.push(
+                {
+                    nome: tarefa,
+                    id: Date.now(),
+                    dataConclusao: data,
+                }
+            );
+            
+            salvarTarefas();
+            renderizar();
+
+            // document.getElementById("exibir").innerHTML = afazeres; -> outra forma de fazer ???
+        }
+
+        function removerTarefa(evento){
+            const botao = evento.target; // retorna o botão clicado
+            const id = botao.id;
+            afazeres = afazeres.filter(function(tarefa){
+                if(tarefa.id == id){ // compara o id do botão com o id da tarefa
+                    return false;
+                }else{
+                    return true;
+                }
+            });
+            salvarTarefas();
+            renderizar();
+        }
+        renderizar();
+    </script>
+</body>
+</html>

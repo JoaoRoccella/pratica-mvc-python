@@ -1,0 +1,40 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+ 
+#Tarefa{
+    background-color: blueviolet;
+    border-radius: 20px;
+    padding: 8px;
+    border: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    margin-top: 10px;
+ 
+}
+ 
+button{
+    background-color: blueviolet;
+    border-radius: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    font-size: 11px;
+}
+ 
+#tarefa{
+    border-radius: 20px;
+    border: 2px;
+    padding: 8px;
+    background-color: rgb(247, 241, 255);
+}
+
+#data{
+    border-radius: 20px;
+    border: 2px;
+    padding: 8px;
+    background-color: rgb(247, 241, 255);
+    margin-left: 10px;
+}
