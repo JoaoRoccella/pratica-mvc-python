@@ -26,7 +26,7 @@ class Database:
                 self.cursor = self.connection.cursor(dictionary=True)
                 print('Conexão ao banco de dados realizada com sucesso!')
         except Error as e:
-            print(f'Error de conexão: {e}')
+            print(f'Erro de conexão: {e}')
             self.connection = None
             self.cursor = None
 
@@ -49,7 +49,7 @@ class Database:
             self.connection.commit()
             return self.cursor
         except Error as e:
-            print(f'Error de execução: {e}')
+            print(f'Erro de execução: {e}')
             return None
         
     def consultar(self, sql, params=None):
@@ -62,5 +62,5 @@ class Database:
             self.cursor.execute(sql, params)
             return self.cursor.fetchall()
         except Error as e:
-            print(f'Error de consulta: {e}')
+            print(f'Erro de consulta: {e}')
             return None
