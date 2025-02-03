@@ -1,40 +1,135 @@
-body{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
-}
- 
-#Tarefa{
-    background-color: blueviolet;
-    border-radius: 20px;
-    padding: 8px;
-    border: 0px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
-    margin-top: 10px;
- 
-}
- 
-button{
-    background-color: blueviolet;
-    border-radius: 20px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border: 0px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
-    font-size: 11px;
-}
- 
-#tarefa{
-    border-radius: 20px;
-    border: 2px;
-    padding: 8px;
-    background-color: rgb(247, 241, 255);
+/* Reset de estilos para garantir consistência no design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#data{
-    border-radius: 20px;
-    border: 2px;
-    padding: 8px;
-    background-color: rgb(247, 241, 255);
-    margin-left: 10px;
+/* Corpo da página */
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+}
+
+/* Container do formulário, garantindo centralização e espaçamento adequado */
+form {
+    max-width: 500px;
+    margin: 2rem 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo dos campos de entrada de texto e data */
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px; /* Espaço entre os campos */
+    border: 2px solid #8A2BE2; /* Cor roxa para consistência */
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9ff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Foco nos campos de input */
+input[type="text"]:focus,
+input[type="date"]:focus {
+    border-color: #7A1D8E; /* Cor de borda mais intensa */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Sombras para destacar o campo */
+}
+
+/* Estilo do botão */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #8A2BE2;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+button:hover {
+    background-color: #7A1D8E;
+    transform: scale(1.05);
+}
+
+/* Estilo para a lista de tarefas */
+h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #8A2BE2;
+    margin-bottom: 20px;
+}
+
+/* Estilo da lista não ordenada (ul) */
+ul {
+    list-style-type: none; /* Remove os pontos padrão */
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo dos itens da lista (li) */
+ul li {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #8A2BE2; /* Cor de borda consistente */
+    display: flex;
+    justify-content: space-between; /* Alinha o título e a data aos extremos */
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse sobre os itens da lista */
+ul li:hover {
+    background-color: #f4f4f9;
+}
+
+/* Estilo do link de apagar */
+ul li a {
+    text-decoration: none;
+    color: #e74c3c; /* Cor vermelha para o link de apagar */
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+/* Efeito de hover no link de apagar */
+ul li a:hover {
+    color: #c0392b; /* Cor mais escura para o link ao passar o mouse */
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    ul li {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
