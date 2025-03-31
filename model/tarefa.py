@@ -12,7 +12,7 @@ class Tarefa:
         db = Database()
         db.conectar()
 
-        sql = 'INSERT INTO tarefa (titulo, data_conclusao) VALUES ( 
+        sql = 'INSERT INTO tarefa (titulo, data_conclusao) VALUES (%s, %s)'
         params = (self.titulo, self.data_conclusao)
         db.executar(sql, params)
         db.desconectar()
