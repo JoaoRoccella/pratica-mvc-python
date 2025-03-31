@@ -9,16 +9,21 @@ def index():
         titulo = request.form['titulo']
         data_conclusao = request.form['data_conclusao']
         tarefa = Tarefa(titulo=titulo, data_conclusao=data_conclusao)
-        tarefa.salvarTarefa()
+        tarefa.salvar_tarefa()
         return redirect(url_for('index'))
 
-    tarefas = Tarefa.listarTarefas()
+    tarefas = Tarefa.listar_tarefas()
     return render_template('index.html', tarefas=tarefas, title='Minhas Tarefas')
 
 @app.route('/delete/<int:idTarefa>')
 def delete(idTarefa):
-    Tarefa.apagarTarefa(idTarefa)
+    Tarefa.apagar_tarefa(idTarefa)
     return redirect(url_for('index'))
+
+@app.route('/update/<int:idTarefa>')
+def update(idTarefa):
+    tarefa = Tarefa.carregar_tarefa(4)
+    
 
 # Desenvolva uma nova funcionalidade para a nossa agenda: editar uma tarefa no próprio formulário da página de cadastro de tarefas.
 # -> A aplicação deve permitir a edição de uma tarefa que foi selecionada da lista de tarefas

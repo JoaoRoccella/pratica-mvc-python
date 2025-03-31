@@ -12,6 +12,7 @@
             <li>
                 {{ tarefa.titulo }} - {{ tarefa.data_conclusao }}
                 <a href="{{ url_for('delete', idTarefa=tarefa.id) }}">Apagar</a>
+                <a href="#" data-tarefa-id="{{ tarefa.id }}">Editar</a>
             </li>
         {% endfor %}
     </ul>
