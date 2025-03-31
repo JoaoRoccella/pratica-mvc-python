@@ -1,7 +1,7 @@
-from database import Database
+from model.database import Database
 
 class Tarefa:
-    def __init__(self, id, titulo, data_conclusao):
+    def __init__(self, titulo, id=None, data_conclusao=None):
         self.id = id
         self.titulo = titulo
         self.data_conclusao = data_conclusao
@@ -12,11 +12,12 @@ class Tarefa:
         db = Database()
         db.conectar()
 
-        sql = 'INSERT INTO tarefa (titulo, data_conclusao) VALUES (%s, %s)'
+        sql = 'INSERT INTO tarefa (titulo, data_conclusao) VALUES ( 
         params = (self.titulo, self.data_conclusao)
         db.executar(sql, params)
         db.desconectar()
 
+    @staticmethod
     def listarTarefas():
         """Retornar uma lista com todas as tarefas cadastradas."""
         db = Database()
@@ -27,17 +28,14 @@ class Tarefa:
         db.desconectar()
         return tarefas if tarefas else []
 
-    def apagarTarefa(self):
+    @staticmethod
+    def apagarTarefa(idTarefa):
         """Apaga uma tarefa cadastrada no banco de dados."""
         db = Database()
         db.conectar()
 
         sql = 'DELETE FROM tarefa WHERE id = %s'
-        params = (self.id,) # Precisa passar como tupla? (a, b, c, ...) SIM!
+        params = (idTarefa,) # Precisa passar como tupla? (a, b, c, ...) SIM!
         db.executar(sql, params)
         db.desconectar()
-
-# Área 51
-tarefa = Tarefa(2, 'Teste de tarefa', None)
-tarefa.apagarTarefa()
     
