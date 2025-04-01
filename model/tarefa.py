@@ -1,4 +1,5 @@
 from model.database import Database
+from datetime import datetime
 
 class Tarefa:
     def __init__(self, titulo, id=None, data_conclusao=None):
@@ -38,12 +39,12 @@ class Tarefa:
         db.executar(sql, params)
         db.desconectar()
     
-    def editar_tarefa(self):
+    def atualizar_tarefa(self):
         """Altera as informações de uma tarefa."""
         db = Database()
         db.conectar()
 
-        sql = 'UPDATE tarefa SET titulo = "%s", data_conclusao = "%s" where id = %s;'
+        sql = 'UPDATE tarefa SET titulo = %s, data_conclusao = %s where id = %s;'
         params = (self.titulo, self.data_conclusao, self.id)
         db.executar(sql, params)
         db.desconectar()
@@ -60,11 +61,19 @@ class Tarefa:
 
         if resultado:
             tarefa_selecionada = resultado[0]  # Pegamos o primeiro (e único) dicionário retornado
+
+            # Verifica se a data_conclusao é um objeto datetime e formata corretamente
+            data_formatada = (
+                tarefa_selecionada["data_conclusao"].strftime('%Y-%m-%d') 
+                if isinstance(tarefa_selecionada["data_conclusao"], datetime) 
+                else tarefa_selecionada["data_conclusao"]
+            )
+
             return Tarefa(
                 id=tarefa_selecionada["id"],
                 titulo=tarefa_selecionada["titulo"],
-                data_conclusao=tarefa_selecionada["data_conclusao"]
-        )
+                data_conclusao=data_formatada
+            )
         
         return None
     
