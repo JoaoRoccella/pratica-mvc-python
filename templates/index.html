@@ -2,19 +2,21 @@
 
 {% block content %}
     <form method="POST">
-        <input type="text" name="titulo" placeholder="Título da tarefa" required>
-        <input type="date" name="data_conclusao" required>
-        <button type="submit">Adicionar</button>
+        <input type="text" name="titulo" id="titulo" placeholder="Título da tarefa" value="{{ tarefa_selecionada.titulo if tarefa_selecionada else '' }}" required>
+        <input type="date" name="data_conclusao" id="data_conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
+        <button type="submit">{{ 'Salvar' if tarefa_selecionada else 'Adicionar' }}</button>
     </form>
 
     {% if tarefas %}
-        <h3>Lista de Tarefas</h3>
-    {% endif %}
+    <h2>Lista de Tarefas</h2>
     <ul>
         {% for tarefa in tarefas %}
-            <li>{{ tarefa.titulo }} - {{ tarefa.data_conclusao }}
-                <a href="{{ url_for('delete', id=tarefa.id) }}">Apagar</a>
+            <li>
+                {{ tarefa.titulo }} - {{ tarefa.data_conclusao }}
+                <a href="{{ url_for('delete', idTarefa=tarefa.id) }}">Apagar</a>
+                <a href="{{ url_for('editar', idTarefa=tarefa.id) }}">Editar</a>
             </li>
         {% endfor %}
     </ul>
+    {% endif %}
 {% endblock %}
